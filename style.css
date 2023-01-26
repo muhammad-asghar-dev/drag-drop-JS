@@ -5,11 +5,14 @@
     font-family: system-ui;
 }
 body {
-    padding: 25px 100px;
+    padding: 0px 100px 25px;
 }
 section.container {
     width: 1300px;
     margin: 0 auto;
+}
+header {
+    margin: 30px 0 50px;
 }
 
 .rect-opts-container {
@@ -17,19 +20,50 @@ section.container {
     justify-content: space-between;
     align-items: flex-start;
 }
+.options-container {
+    width: 30%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 0 0 50px;
+}
 .reat-arrows {
-    width: 500px;
+    width: 70%;
     aspect-ratio: 1/1;
     display: grid;
     grid-template-areas:
         "leftArrow rectangle"
         "space bottomArrow";
-    grid-template-rows: 90% 10%;
-    grid-template-columns: 10% 90%;
+    grid-template-rows: 70% 30%;
+    grid-template-columns: 30% 70%;
 }
 .left-arrow-container {
     grid-area: leftArrow;
-    padding: 23px 27px 30px 8px;
+    display: flex;
+}
+.left-arrow-container > * {
+    width: 50%;
+    padding: 23px 53px 23px 29px;
+    display: flex;
+    justify-content: right;
+}
+.left-arrow-container .arrow-labels {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 23px 0px 21px 22px;
+
+    position: relative;
+    left: 10px;
+}
+.bottom-arrow-container .arrow-labels > div,
+.left-arrow-container .arrow-labels {
+    font-size: 18px;
+    color: black;
+    font-weight: 500;
+}
+.left-arrow-container .arrow {
+    /* padding: 23px 27px 30px 8px; */
+    width: 100%;
 }
 .arrow {
     background-color: #eeeeee;
@@ -94,7 +128,14 @@ section.container {
 .bottom-arrow-container {
     grid-area: bottomArrow;
     /* background-color: orange; */
-    padding: 25px 50px 11px 50px;
+    /* padding: 25px 50px 11px 50px; */
+    display: flex;
+    flex-direction: column;
+}
+.bottom-arrow-container > * {
+    /* height: 50%; */
+    /* background-color: red; */
+    padding: 31px 36px 0px;
 }
 .bottom-arrow-container .arrow {
     height: 100%;
@@ -104,6 +145,7 @@ section.container {
     border-left: none;
     border-right: none;
     /* background-color: red; */
+    padding: 0px 0 13px 0px;
 }
 .bottom-arrow-container .arrow::before {
     width: 5px;
@@ -120,14 +162,24 @@ section.container {
     left: unset;
 }
 .bottom-arrow-container .arrow .left-corner {
-    left: -37px;
+    left: -36px;
     transform: rotate(268deg);
-    top: -11px;
+    top: -9px;
 }
 .bottom-arrow-container .arrow .right-corner {
     right: -37px;
     transform: rotate(88deg);
-    top: -13px;
+    top: -10px;
+}
+.bottom-arrow-container .arrow-labels {
+    padding-top: 20px;
+    padding-bottom: 0;
+    display: flex;
+    justify-content: space-between;
+}
+.bottom-arrow-container .arrow-labels > div {
+    display: flex;
+    flex-direction: column;
 }
 .rectangle {
     /* width: 90%; */
@@ -141,7 +193,7 @@ section.container {
 }
 /* Appear when the rectangle dragovered */
 .rectangle.active {
-    box-shadow: 0px 0px 10px 10px yellow;
+    box-shadow: 0px 0px 10px 10px #fef1ce;
 }
 /* Vertically and Horizontally line between the rectangle */
 .rectangle::before,
@@ -178,11 +230,34 @@ section.container {
 .rectangle > div {
     z-index: 2;
 }
+.options-container > ul {
+    /* display: flex; */
+    width: 50%;
+    margin: 0 0 0 50px;
+}
+.options-container > ul > li {
+    display: flex;
+    /* justify-content: left; */
+    list-style: none;
+    /* background-color: orange; */
+    font-size: 18px;
+    width: 100%;
+    margin: 0 0 2px 0;
+}
+.options-container > ul > li > span {
+    text-align: right;
+    width: 20%;
+    /* background-color: red; */
+}
+.options-container > ul > li > p {
+    width: 80%;
+    margin: 00 0 0 20px;
+}
 /* Drage & Drop able box */
 .box {
     width: 100%;
     aspect-ratio: 1/1;
-    background-color: yellow;
+    background-color: #fef1ce;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -202,7 +277,7 @@ section.container {
 .form > form {
     display: flex;
     flex-direction: column;
-    width: 40%;
+    width: 60%;
 }
 .form-title {
     text-align: center;
@@ -286,75 +361,5 @@ section.container {
 @media screen and (max-width: 1300px) {
     section.container {
         width: 100%;
-    }
-}
-
-@media screen and (max-width: 1100px) {
-    .options {
-        width: 25%;
-    }
-}
-
-@media screen and (max-width: 900px) {
-    .form > form {
-        width: 100%;
-    }
-    .options {
-        justify-content: right;
-    }
-}
-
-@media screen and (max-width: 800px) {
-    body {
-        padding: 25px 50px;
-    }
-}
-@media screen and (max-width: 650px) {
-    .rect-opts-container {
-        flex-direction: column-reverse;
-    }
-    .options {
-        width: 100%;
-        grid-template-columns: repeat(auto-fill, minmax(30px, 50px));
-        margin: 0 0 30px 0;
-        grid-gap: 15px;
-        justify-content: left;
-    }
-    .reat-arrows {
-        width: 100%;
-    }
-}
-
-@media screen and (max-width: 550px) {
-    body {
-        padding: 25px 15px;
-    }
-    .options {
-        grid-template-columns: repeat(auto-fill, minmax(20px, 40px));
-        grid-gap: 10px;
-    }
-}
-
-@media screen and (max-width: 500px) {
-    .left-arrow-container {
-        padding: 23px 19px 30px 8px;
-    }
-    .bottom-arrow-container {
-        padding: 22px 50px 7px 50px;
-    }
-    .bottom-arrow-container .arrow .right-corner {
-        top: -9px;
-    }
-    .bottom-arrow-container .arrow .left-corner {
-        top: -9px;
-    }
-}
-
-@media screen and (max-width: 400px) {
-    .reat-arrows > * {
-        display: none;
-    }
-    .rectangle {
-        display: block;
     }
 }
