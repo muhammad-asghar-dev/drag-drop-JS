@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- Custom Style link -->
+        <link rel="stylesheet" href="style.css" />
+        <title>Drag & Drop | JS</title>
+    </head>
+    <body>
+        <div class="overlay d-none" id="overlay"></div>
+        <section class="container">
+            <div class="rect-opts-container">
+                <!-- Rectangle -->
+                <div class="rectangle" id="rectangle"></div>
+                <!-- Options -->
+                <div class="options" id="options">
+                    <div>
+                        <div class="box box-1" draggable="true">1</div>
+                    </div>
+                    <div>
+                        <div class="box box-2" draggable="true">2</div>
+                    </div>
+                    <div>
+                        <div class="box box-3" draggable="true">3</div>
+                    </div>
+                    <div>
+                        <div class="box box-4" draggable="true">4</div>
+                    </div>
+                    <div>
+                        <div class="box box-5" draggable="true">5</div>
+                    </div>
+                    <div>
+                        <div class="box box-6" draggable="true">6</div>
+                    </div>
+                    <div>
+                        <div class="box box-7" draggable="true">7</div>
+                    </div>
+                    <div>
+                        <div class="box box-8" draggable="true">8</div>
+                    </div>
+                    <div>
+                        <div class="box box-9" draggable="true">9</div>
+                    </div>
+                    <div>
+                        <div class="box box-10" draggable="true">10</div>
+                    </div>
+                    <div>
+                        <div class="box box-11" draggable="true">11</div>
+                    </div>
+                    <div>
+                        <div class="box box-12" draggable="true">12</div>
+                    </div>
+                    <div>
+                        <div class="box box-13" draggable="true">13</div>
+                    </div>
+                    <div>
+                        <div class="box box-14" draggable="true">14</div>
+                    </div>
+                    <div>
+                        <div class="box box-15" draggable="true">15</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Form -->
+            <div class="form">
+                <form id="form">
+                    <h1 class="form-title">More details...</h1>
+                    <div class="input-group">
+                        <label for="email">Email address (optional) </label>
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="Enter your Email"
+                        />
+                    </div>
+                    <div class="input-group">
+                        <label for="dob"
+                            >Date of Birth
+                            <span title="Required">*</span></label
+                        >
+                        <input type="date" id="dob" />
+                        <div class="error dob-error d-none">
+                            <span>i</span>
+                            <p>Please select your date of birth</p>
+                        </div>
+                    </div>
+                    <div class="submit-btn">
+                        <button type="submit">Submit</button>
+                    </div>
+                    <div class="error rectangle-error d-none">
+                        <span>i</span>
+                        <p>Please drag all the boxes in the rectangle.</p>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </body>
+    <script src="script.js"></script>
+</html>

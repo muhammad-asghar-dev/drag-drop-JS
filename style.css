@@ -1,0 +1,230 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui;
+}
+body {
+    padding: 50px 100px;
+}
+section.container {
+    width: 1300px;
+    /* border: 1px solid; */
+    margin: 0 auto;
+}
+
+.rect-opts-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.rectangle {
+    width: 50%;
+    position: relative;
+    height: auto;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    border: 2px solid gray;
+    transition: all 0.3s ease;
+}
+.rectangle.active {
+    box-shadow: 0px 0px 10px 10px yellow;
+}
+.rectangle::before,
+.rectangle::after {
+    content: "";
+    display: block;
+
+    position: absolute;
+    /* background-color: red; */
+    border: inherit;
+}
+.rectangle::before {
+    /* width: 1%; */
+    height: 100%;
+    top: 0;
+    left: 50%;
+    border-top: none;
+    border-bottom: none;
+    border-left: none;
+}
+.rectangle::after {
+    top: 50%;
+    left: 0;
+    border-right: none;
+    border-left: none;
+    border-bottom: none;
+    width: 100%;
+    /* height: 1%; */
+}
+.options {
+    width: 30%;
+    /* background-color: pink; */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 60px);
+    grid-gap: 20px;
+}
+.rectangle > div {
+    /* border: 3px solid white; */
+    z-index: 2;
+}
+.options > div {
+    /* padding: 0 20px; */
+}
+.box {
+    width: 100%;
+    aspect-ratio: 1/1;
+    background-color: yellow;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    cursor: move;
+    /* position: absolute; */
+}
+.box.choosen {
+    opacity: 0;
+    user-select: none;
+    z-index: -1;
+    position: relative;
+}
+
+.form {
+    /* background-color: red; */
+    margin: 20px 0 0;
+}
+.form > form {
+    /* background-color: orange; */
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+.form-title {
+    text-align: center;
+}
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0 0;
+}
+.input-group input {
+    margin: 5px 0 00 0;
+    height: 40px;
+    padding: 0 10px;
+}
+.error {
+    background-color: rgba(255, 0, 0, 0.258);
+    width: max-content;
+    padding: 0px 20px;
+    height: 50px;
+    border: 2px solid red;
+    border-radius: 5px;
+    color: red;
+    margin: 15px 0 0px;
+    display: flex;
+    position: relative;
+    align-items: center;
+}
+.error.dob-error::before {
+    content: "";
+    display: block;
+    width: 15px;
+    aspect-ratio: 1/1;
+    background-color: #ffbdbd;
+    position: absolute;
+    top: -10px;
+    left: 9%;
+    border-left: inherit;
+    border-top: inherit;
+    transform: rotate(45deg);
+}
+.error span {
+    border-radius: 50%;
+    width: 30px;
+    aspect-ratio: 1/1;
+    border: inherit;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-family: cursive;
+    display: flex;
+    transform: scale(0.8);
+    margin: 0 10px 0 0;
+}
+.submit-btn {
+    /* background-color: red; */
+    display: flex;
+    justify-content: right;
+}
+.submit-btn button {
+    padding: 10px 20px;
+    margin: 10px 0;
+    cursor: pointer;
+}
+.d-none {
+    display: none !important;
+}
+.dragging {
+    opacity: 0.5;
+    z-index: 3;
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(255, 0, 0, 0);
+    height: 100%;
+}
+
+@media screen and (max-width: 1300px) {
+    section.container {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .rect-opts-container {
+        justify-content: unset;
+    }
+    .options {
+        padding-left: 50px;
+        width: 50%;
+        grid-template-columns: repeat(auto-fill, 50px);
+    }
+    .form > form {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    body {
+        padding: 25px 50px;
+    }
+    .form > form {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .options {
+        width: 40%;
+    }
+    .rectangle {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .rect-opts-container {
+        flex-direction: column-reverse;
+    }
+    .options {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        margin: 0 0 50px 0;
+    }
+    .rectangle {
+        width: 100%;
+    }
+}
