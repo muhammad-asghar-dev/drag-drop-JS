@@ -109,7 +109,7 @@ for (let i = 0; i < options.length; i++) {
                     ((cursorX - distanceFromLeft) / rectWidth) * 100 + "%";
                 box.style.top =
                     ((cursorY - distanceFromTop) / rectHeight) * 100 + "%";
-                box.style.width = 100 / 12;
+                box.style.width = 100 / 12 + "%";
                 box.style.aspectRatio = "1/1";
                 boxAdded = true;
             } else {

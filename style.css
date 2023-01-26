@@ -42,7 +42,7 @@ header {
 }
 .left-arrow-container > * {
     width: 50%;
-    padding: 23px 53px 23px 29px;
+    padding: 0 25px 0 0;
     display: flex;
     justify-content: right;
 }
@@ -63,7 +63,7 @@ header {
 }
 .left-arrow-container .arrow {
     /* padding: 23px 27px 30px 8px; */
-    width: 100%;
+    width: 20px;
 }
 .arrow {
     background-color: #eeeeee;
@@ -103,7 +103,7 @@ header {
     transform: rotate(-36deg) skewX(1deg) translateX(-1px);
 }
 .arrow .top-corner.corner {
-    top: -20px;
+    top: -19px;
 }
 .arrow .bottom-corner.corner {
     bottom: -20px;
@@ -361,5 +361,125 @@ header {
 @media screen and (max-width: 1300px) {
     section.container {
         width: 100%;
+    }
+}
+@media screen and (max-width: 1200px) {
+    .reat-arrows {
+        width: 60%;
+    }
+    .options-container {
+        width: 40%;
+    }
+    .reat-arrows {
+        grid-template-rows: 80% 20%;
+        grid-template-columns: 20% 80%;
+    }
+    .left-arrow-container .arrow-labels {
+        padding: 23px 0px 23px 0px;
+    }
+}
+@media screen and (max-width: 1100px) {
+    .left-arrow-container .arrow-labels {
+        left: -15px;
+    }
+}
+@media screen and (max-width: 950px) {
+    .options-container > ul {
+        margin: 0;
+    }
+    .options {
+        grid-template-columns: repeat(2, 30px);
+        grid-gap: 15px;
+    }
+}
+
+@media screen and (max-width: 875px) {
+    .options-container {
+        padding: 0 0 0 30px;
+    }
+}
+
+@media screen and (max-width: 815px) {
+    body {
+        padding: 0px 50px 25px;
+    }
+    .form > form {
+        width: 100%;
+        margin: 70px 0 0 0;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .rect-opts-container {
+        margin-top: 190px;
+    }
+    .options-container > ul {
+        margin: 0;
+        display: grid;
+        left: 0;
+        grid-template-columns: repeat(auto-fill, minmax(200px, max-content));
+        top: 100px;
+        width: 100%;
+        position: absolute;
+        padding: 0 25px;
+    }
+    .options-container {
+        width: 20%;
+    }
+    .reat-arrows {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .options-container > ul {
+        grid-template-columns: repeat(auto-fill, minmax(170px, max-content));
+    }
+}
+@media screen and (max-width: 560px) {
+    .options-container > ul {
+        grid-template-columns: repeat(auto-fill, minmax(150px, max-content));
+    }
+    .left-arrow-container .arrow {
+        padding: 24px 8px 30px 7px;
+    }
+    .left-arrow-container .arrow-labels {
+        left: -28px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .bottom-arrow-container .arrow-labels > div,
+    .left-arrow-container .arrow-labels {
+        font-size: 15px;
+    }
+    .reat-arrows {
+        grid-template-rows: 90% 10%;
+        grid-template-columns: 10% 90%;
+    }
+    .left-arrow-container .arrow-labels {
+        left: -40px;
+    }
+    .options-container > ul {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 50%));
+    }
+    .rect-opts-container {
+        margin-top: 255px;
+    }
+    .options-container {
+        padding: 0 0 0 20px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .options-container {
+    }
+    .options-container {
+        padding: 0px 0 0 23px;
+        width: 20%;
+        padding: 0 0 0 10px;
+    }
+    .options {
+        grid-gap: 10px;
     }
 }
