@@ -45,6 +45,80 @@ for (let i = 0; i < options.length; i++) {
 
         curBoxNum = NaN;
     });
+
+    // For Touch screens
+    let boxDragedTouch = false;
+    let cursorX = 0;
+    let cursorY = 0;
+    let boxAdded = false;
+
+    box.addEventListener("touchstart", (e) => {
+        console.log("drag start");
+        boxDragedTouch = true;
+    });
+
+    box.addEventListener("touchmove", (e) => {
+        if (boxDragedTouch) {
+            console.log("Draging");
+            // console.log(e.touches[0].clientX, e.touches[0].clientY);
+            box.style.position = "fixed";
+            box.style.left = e.touches[0].clientX + "px";
+            box.style.top = e.touches[0].clientY + "px";
+            box.style.width = "50px";
+            box.style.aspectRatio = "1/1";
+            cursorX = e.touches[0].clientX;
+            cursorY = e.touches[0].clientY;
+        }
+    });
+
+    box.addEventListener("touchend", (e) => {
+        if (boxDragedTouch) {
+            boxDragedTouch = false;
+
+            // console.log(cursorX, cursorY);
+            //..
+            const distanceFromTop = rectangle.offsetTop;
+            const distanceFromLeft = rectangle.offsetLeft;
+
+            const rectWidth = rectangle.clientWidth;
+            const rectHeight = rectangle.clientHeight;
+
+            // console.log("Distace from left >>", distanceFromLeft);
+
+            if (
+                cursorX > distanceFromLeft &&
+                cursorX < distanceFromLeft + rectWidth &&
+                cursorY > distanceFromTop &&
+                cursorY < distanceFromTop + rectHeight
+            ) {
+                console.log("++++++++++");
+                rectangle.appendChild(box);
+
+                box.style.position = "absolute";
+                box.style.left =
+                    ((cursorX - distanceFromLeft) / rectWidth) * 100 + "%";
+                box.style.top =
+                    ((cursorY - distanceFromTop) / rectHeight) * 100 + "%";
+                box.style.width = 100 / 12;
+                box.style.aspectRatio = "1/1";
+                boxAdded = true;
+            } else {
+                console.log("----------");
+                box.style.position = "static";
+                box.style.left = "unset";
+                box.style.top = "unset";
+                box.style.width = "100%";
+                box.style.aspectRatio = "1/1";
+                if (boxAdded) {
+                    boxAdded = false;
+                    document
+                        .querySelector(`#options > div:nth-child(${i + 1})`)
+                        .appendChild(box);
+                }
+            }
+            countDragBoxes();
+        }
+    });
 }
 
 rectangle.addEventListener("dragover", function (event) {
@@ -63,7 +137,6 @@ rectangle.addEventListener("dragover", function (event) {
 
     let fromLeft = (x * 100) / width - 4;
     let fromTop = (y * 100) / height - 4;
-    // console.log(fromLeft, fromTop);
 
     fromLeft < 0 ? (fromLeft = 0) : "";
     fromLeft > 92 ? (fromLeft = 92) : "";
@@ -71,14 +144,11 @@ rectangle.addEventListener("dragover", function (event) {
     fromTop < 0 ? (fromTop = 0) : "";
     fromTop > 92 ? (fromTop = 92) : "";
 
-    // console.log(fromLeft, fromTop);
-
     curBox.style.width = 100 / 12 + "%";
     curBox.style.position = "absolute";
     curBox.style.left = `${fromLeft}%`;
     curBox.style.top = `${fromTop}%`;
 });
-// rectangle.addEventListener("dragleave", removeBox);
 overlay.addEventListener("dragover", () => {
     if (deleteAble) {
         rectangle.classList.remove("active");
@@ -99,7 +169,6 @@ overlay.addEventListener("dragover", () => {
 function calcCordinates() {
     const WidthHeight = rectangle.clientHeight;
     const oneCord = 100 / 12;
-    // console.log(oneCord);
     for (let i = 0; i < rectangle.children.length; i++) {
         const box = rectangle.querySelector(`div.box.box-${i + 1}`);
 
@@ -122,17 +191,14 @@ function calcCordinates() {
         }
         xCord = Number(xCord.toFixed(2));
         yCord = Number(yCord.toFixed(2));
-        // console.log("x >> ", xCord, "  y >> ", yCord);
-        // console.log("Left >> ", xCord);
         labels[`label-${i + 1}`] = {
             x: xCord,
             y: yCord,
         };
     }
     const json = JSON.stringify(labels);
-    // create a new blob with the json string
     const blob = new Blob([json], { type: "application/json" });
-    // create a POST request
+
     fetch("", {
         method: "POST",
         headers: {
@@ -141,19 +207,16 @@ function calcCordinates() {
             Authorization: "bearer ",
         },
         body: blob,
-    })
-        .then((response) => {
-            return response.json();
-        })
-        .then((data) => {
-            console.log(data);
-        })
-        .catch((error) => {
-            console.error(error);
-        });
-    // create an object url from the blob
+    }).then((response) => {
+        return response.json();
+    });
+    // .then((data) => {
+    //     console.log(data);
+    // })
+    // .catch((error) => {
+    //     console.error(error);
+    // });
     const url = URL.createObjectURL(blob);
-    // redirect to the object url
     window.location = url;
 }
 

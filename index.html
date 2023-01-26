@@ -4,18 +4,35 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="viewport" content="width=device-width,user-scalable=no" />
         <!-- Custom Style link -->
         <link rel="stylesheet" href="style.css" />
         <title>Drag & Drop | JS</title>
     </head>
     <body>
+        <!-- Overlay, helps when the draged box leave the reatangle, overlay appears and catch the draged box -->
         <div class="overlay d-none" id="overlay"></div>
         <section class="container">
             <div class="rect-opts-container">
                 <!-- Rectangle -->
-                <div class="rectangle" id="rectangle"></div>
+                <div class="reat-arrows">
+                    <div class="left-arrow-container">
+                        <div class="arrow">
+                            <div class="top-corner corner"></div>
+                            <div class="bottom-corner corner"></div>
+                        </div>
+                    </div>
+                    <div class="bottom-arrow-container">
+                        <div class="arrow">
+                            <div class="left-corner corner"></div>
+                            <div class="right-corner corner"></div>
+                        </div>
+                    </div>
+                    <div class="rectangle" id="rectangle"></div>
+                </div>
                 <!-- Options -->
                 <div class="options" id="options">
+                    <!-- single box -->
                     <div>
                         <div class="box box-1" draggable="true">1</div>
                     </div>
@@ -66,7 +83,8 @@
             <!-- Form -->
             <div class="form">
                 <form id="form">
-                    <h1 class="form-title">More details...</h1>
+                    <h1 class="form-title">More details</h1>
+                    <!-- Email Input -->
                     <div class="input-group">
                         <label for="email">Email address (optional) </label>
                         <input
@@ -75,6 +93,7 @@
                             placeholder="Enter your Email"
                         />
                     </div>
+                    <!-- Date of Birth Input -->
                     <div class="input-group">
                         <label for="dob"
                             >Date of Birth
@@ -89,6 +108,7 @@
                     <div class="submit-btn">
                         <button type="submit">Submit</button>
                     </div>
+                    <!-- Error shown when all boxes will not droped into the rectangle -->
                     <div class="error rectangle-error d-none">
                         <span>i</span>
                         <p>Please drag all the boxes in the rectangle.</p>
@@ -97,5 +117,6 @@
             </div>
         </section>
     </body>
+    <!-- Custom JavaScript file attached -->
     <script src="script.js"></script>
 </html>

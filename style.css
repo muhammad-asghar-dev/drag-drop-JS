@@ -5,11 +5,10 @@
     font-family: system-ui;
 }
 body {
-    padding: 50px 100px;
+    padding: 25px 100px;
 }
 section.container {
     width: 1300px;
-    /* border: 1px solid; */
     margin: 0 auto;
 }
 
@@ -18,29 +17,142 @@ section.container {
     justify-content: space-between;
     align-items: flex-start;
 }
-.rectangle {
-    width: 50%;
+.reat-arrows {
+    width: 500px;
+    aspect-ratio: 1/1;
+    display: grid;
+    grid-template-areas:
+        "leftArrow rectangle"
+        "space bottomArrow";
+    grid-template-rows: 90% 10%;
+    grid-template-columns: 10% 90%;
+}
+.left-arrow-container {
+    grid-area: leftArrow;
+    padding: 23px 27px 30px 8px;
+}
+.arrow {
+    background-color: #eeeeee;
+    border-left: 2px solid gray;
+    border-right: 2px solid gray;
+    width: 100%;
+    height: 100%;
     position: relative;
-    height: auto;
+    justify-content: center;
+    display: flex;
+}
+.arrow .corner {
+    border-bottom: 30px solid #eee;
+    border-left: 22px solid transparent;
+    border-right: 22px solid transparent;
+    border-top: none;
+    position: absolute;
+    width: 0;
+    box-shadow: 0px 2px 0px 0px grey;
+}
+.arrow .corner::before,
+.arrow .corner::after {
+    content: "";
+    width: 2px;
+    height: 38px;
+    position: absolute;
+    top: 0;
+    left: -1px;
+    background: gray;
+    z-index: 13;
+    transform-origin: top;
+}
+.arrow .corner::before {
+    transform: rotate(38deg) skewX(2deg);
+}
+.arrow .corner::after {
+    transform: rotate(-36deg) skewX(1deg) translateX(-1px);
+}
+.arrow .top-corner.corner {
+    top: -20px;
+}
+.arrow .bottom-corner.corner {
+    bottom: -20px;
+    top: unset;
+    transform: rotate(180deg);
+}
+.arrow::before,
+.arrow::after {
+    content: "";
+    width: 100%;
+    height: 5px;
+    position: absolute;
+    top: 10px;
+    z-index: 1;
+    left: 0;
+    background: #eee;
+}
+.arrow::after {
+    bottom: 10px;
+    top: unset;
+}
+.bottom-arrow-container {
+    grid-area: bottomArrow;
+    /* background-color: orange; */
+    padding: 25px 50px 11px 50px;
+}
+.bottom-arrow-container .arrow {
+    height: 100%;
+    width: 100%;
+    border-top: 2px solid gray;
+    border-bottom: 2px solid gray;
+    border-left: none;
+    border-right: none;
+    /* background-color: red; */
+}
+.bottom-arrow-container .arrow::before {
+    width: 5px;
+    height: 100%;
+    right: unset;
+    left: -2px;
+    top: 0;
+}
+.bottom-arrow-container .arrow::after {
+    width: 5px;
+    height: 100%;
+    bottom: 0;
+    right: -2px;
+    left: unset;
+}
+.bottom-arrow-container .arrow .left-corner {
+    left: -37px;
+    transform: rotate(268deg);
+    top: -11px;
+}
+.bottom-arrow-container .arrow .right-corner {
+    right: -37px;
+    transform: rotate(88deg);
+    top: -13px;
+}
+.rectangle {
+    /* width: 90%; */
+    position: relative;
+    /* height: auto; */
     aspect-ratio: 1/1;
     overflow: hidden;
     border: 2px solid gray;
     transition: all 0.3s ease;
+    grid-area: rectangle;
 }
+/* Appear when the rectangle dragovered */
 .rectangle.active {
     box-shadow: 0px 0px 10px 10px yellow;
 }
+/* Vertically and Horizontally line between the rectangle */
 .rectangle::before,
 .rectangle::after {
     content: "";
     display: block;
-
     position: absolute;
-    /* background-color: red; */
     border: inherit;
 }
+/* Vertically Line */
 .rectangle::before {
-    /* width: 1%; */
     height: 100%;
     top: 0;
     left: 50%;
@@ -48,6 +160,7 @@ section.container {
     border-bottom: none;
     border-left: none;
 }
+/* Horizontally Line */
 .rectangle::after {
     top: 50%;
     left: 0;
@@ -55,22 +168,17 @@ section.container {
     border-left: none;
     border-bottom: none;
     width: 100%;
-    /* height: 1%; */
 }
 .options {
-    width: 30%;
-    /* background-color: pink; */
+    width: 36%;
     display: grid;
-    grid-template-columns: repeat(auto-fill, 60px);
+    grid-template-columns: repeat(2, 40px);
     grid-gap: 20px;
 }
 .rectangle > div {
-    /* border: 3px solid white; */
     z-index: 2;
 }
-.options > div {
-    /* padding: 0 20px; */
-}
+/* Drage & Drop able box */
 .box {
     width: 100%;
     aspect-ratio: 1/1;
@@ -80,7 +188,6 @@ section.container {
     justify-content: center;
     user-select: none;
     cursor: move;
-    /* position: absolute; */
 }
 .box.choosen {
     opacity: 0;
@@ -90,11 +197,9 @@ section.container {
 }
 
 .form {
-    /* background-color: red; */
     margin: 20px 0 0;
 }
 .form > form {
-    /* background-color: orange; */
     display: flex;
     flex-direction: column;
     width: 40%;
@@ -152,7 +257,6 @@ section.container {
     margin: 0 10px 0 0;
 }
 .submit-btn {
-    /* background-color: red; */
     display: flex;
     justify-content: right;
 }
@@ -161,9 +265,7 @@ section.container {
     margin: 10px 0;
     cursor: pointer;
 }
-.d-none {
-    display: none !important;
-}
+
 .dragging {
     opacity: 0.5;
     z-index: 3;
@@ -175,6 +277,11 @@ section.container {
     background-color: rgba(255, 0, 0, 0);
     height: 100%;
 }
+/* Reusable class for JavaScript Use */
+.d-none {
+    display: none !important;
+}
+/* Media Queries to make the project mobile responsive */
 
 @media screen and (max-width: 1300px) {
     section.container {
@@ -182,17 +289,18 @@ section.container {
     }
 }
 
-@media screen and (max-width: 1000px) {
-    .rect-opts-container {
-        justify-content: unset;
+@media screen and (max-width: 1100px) {
+    .options {
+        width: 25%;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .form > form {
+        width: 100%;
     }
     .options {
-        padding-left: 50px;
-        width: 50%;
-        grid-template-columns: repeat(auto-fill, 50px);
-    }
-    .form > form {
-        width: 80%;
+        justify-content: right;
     }
 }
 
@@ -200,31 +308,53 @@ section.container {
     body {
         padding: 25px 50px;
     }
-    .form > form {
-        width: 100%;
-    }
 }
-
-@media screen and (max-width: 700px) {
-    .options {
-        width: 40%;
-    }
-    .rectangle {
-        width: 60%;
-    }
-}
-
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 650px) {
     .rect-opts-container {
         flex-direction: column-reverse;
     }
     .options {
         width: 100%;
-        padding: 0;
-        margin: 0;
-        margin: 0 0 50px 0;
+        grid-template-columns: repeat(auto-fill, minmax(30px, 50px));
+        margin: 0 0 30px 0;
+        grid-gap: 15px;
+        justify-content: left;
+    }
+    .reat-arrows {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    body {
+        padding: 25px 15px;
+    }
+    .options {
+        grid-template-columns: repeat(auto-fill, minmax(20px, 40px));
+        grid-gap: 10px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .left-arrow-container {
+        padding: 23px 19px 30px 8px;
+    }
+    .bottom-arrow-container {
+        padding: 22px 50px 7px 50px;
+    }
+    .bottom-arrow-container .arrow .right-corner {
+        top: -9px;
+    }
+    .bottom-arrow-container .arrow .left-corner {
+        top: -9px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .reat-arrows > * {
+        display: none;
     }
     .rectangle {
-        width: 100%;
+        display: block;
     }
 }
